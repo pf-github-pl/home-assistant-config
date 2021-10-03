@@ -1,0 +1,8 @@
+- platform: rflink
+  devices:
+    RTS_0F2FC3C_0:
+      name: Salon Roleta Prawa
+    RTS_0F0F0F_0:
+      name: Salon Roleta Środek
+    RTS_FF0FFF_0:
+      name: Salon Rolety

@@ -1,0 +1,57 @@
+# Core config
+default_config:
+homeassistant: !include includes/homeassistant.yaml
+frontend:
+  themes: !include_dir_merge_named themes
+
+# Text to speech
+tts: !include includes/tts.yaml
+google: !include includes/google.yaml
+
+notify: !include notify.yaml
+ios: !include includes/ios.yaml
+
+group: !include groups.yaml
+
+#automation: !include automations.yaml
+automation: !include_dir_list automations
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+spotify: !include includes/spotify.yaml
+spotcast: !include includes/spotcast.yaml
+
+
+logger: !include includes/logger.yaml
+influxdb: !include includes/influxdb.yaml
+
+utility_meter: !include includes/utility_meter.yaml
+
+sensor: !include includes/sensors.yaml
+binary_sensor: !include includes/binary_sensors.yaml
+
+# DEVICES
+rflink: !include includes/rflink.yaml
+cover: !include includes/covers.yaml
+
+climate: !include includes/climate.yaml
+
+#moved to integrations directory - referenced as one of packages in homeassistant.yaml 
+#camera: !include includes/camera.yaml
+#recorder: !include includes/recorder.yaml
+
+#Xiaomi Air Purifier and Humidifier connection moved to integration
+#fan:
+#  - platform: xiaomi_miio
+#    host: 192.168.0.152 #ip urządzenia (pamietaj aby było ono stałe)
+#    token: !secret mi_air_purifier_token
+#    name: Air Purifier
+#  - platform: xiaomi_miio
+#    host: 192.168.0.153 #ip urządzenia (pamietaj aby było ono stałe)
+#    token: !secret mi_air_humidifier_token
+#    name: Air Humidifier
+
+#Removed because not using plex recently
+#plex_assistant:
+#  url: !secret plex_url
+#  token: !secret plex_token

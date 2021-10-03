@@ -1,0 +1,19 @@
+recorder:
+  db_url: !secret mysql_db_url
+  purge_keep_days: 7
+  exclude:
+    domains:
+      - sun
+      - calendar
+      - automation
+      - camera
+      - weather
+      - persistent_notification
+    entities:
+      - sensor.czas_pracy_radia_7_dni
+      - sensor.czas_pracy_tv_7_dni
+      - sensor.gpodder
+      - sensor.engineering_feed
+    entity_globs:
+      - sensor.iss_*
+      - sensor.nas1203ff_network_*

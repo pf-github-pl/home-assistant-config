@@ -1,0 +1,9 @@
+push:
+  categories:
+    - name: "Radio" 
+      identifier: 'radio_notification' 
+      actions: 
+        - identifier: 'TURN_ON_RADIO'
+          title: 'Włączam Radio Nowy Świat'
+        - identifier: 'DISMISS'
+          title: 'Nie chcę'

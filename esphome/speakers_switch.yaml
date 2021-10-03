@@ -1,0 +1,42 @@
+esphome:
+  name: speakers_switch
+  platform: ESP8266
+#  board: esp8285
+  board: esp01_1m
+#  arduino_version: 2.4.2
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "SfSs"
+    password: !secret ap_password
+
+api:
+
+logger:
+
+ota:
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO0
+      mode: INPUT_PULLUP
+      inverted: True
+    name: "Speakers Switch"
+    on_press:
+      - switch.toggle: relay
+
+switch:
+  - platform: gpio
+    name: "Speakers Switch"
+    pin: GPIO12
+    id: relay
+
+status_led:
+  pin:
+    number: GPIO13
+    inverted: yes

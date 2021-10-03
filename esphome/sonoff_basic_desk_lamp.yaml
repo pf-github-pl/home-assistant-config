@@ -1,0 +1,72 @@
+esphome:
+  name: sonoff_basic_desk_lamp
+  platform: ESP8266
+  board: esp01_1m
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+# Lowered to tasmota default after unsecessful Sonoff Basic update(worked fine wit 3.3V but cannot access wifi with 230V power)
+  output_power: 17dB
+  
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "SfDkLp"
+    password: !secret ap_password
+
+# Added webserver after unsecessful Sonoff Basic update
+web_server:
+  port: 80
+  auth:
+    username: admin
+    password: !secret web_server_password
+
+captive_portal:
+
+# Enable logging
+# Changed from default to VERBOSE level after unsuccessful Sonoff Basic update
+logger:
+  level: VERBOSE
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO0
+      mode: INPUT_PULLUP
+      inverted: True
+    id: button_1
+    on_press:
+      then:
+        - light.toggle: light_1
+
+  - platform: status
+    name: "Gabinet Desk Lamp Status"
+
+output:
+  - platform: gpio
+    pin: GPIO12
+    id: relay_1
+
+light:
+  - platform: binary
+    name: "Gabinet Desk Lamp"
+    id: light_1
+    output: relay_1
+
+status_led:
+  pin:
+    number: GPIO13
+    inverted: yes
+
+# Added sensor after unsuccessful Sonoff Basic update
+sensor:
+  - platform: wifi_signal
+    name: "Gabinet Desk Lamp Wifi Signal"
+    update_interval: 10s
+  - platform: uptime
+    name: Gabinet Desk Lamp Uptime"

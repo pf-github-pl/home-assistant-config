@@ -1,0 +1,13 @@
+latitude: !secret latitude_home
+longitude: !secret longitude_home
+elevation: 0
+unit_system: metric
+legacy_templates: false
+time_zone: Europe/Warsaw
+name: Dom
+#whitelist_external_dirs:
+#  - /config/
+media_dirs:
+  local: /media
+
+packages: !include_dir_named ../integrations

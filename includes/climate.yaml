@@ -1,0 +1,3 @@
+- platform: airzonecloud
+  username: !secret airzone_user
+  password: !secret airzone_pass

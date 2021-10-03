@@ -1,0 +1,100 @@
+### covid19 new cases
+covid_new_cases:
+  source: sensor.poland_coronavirus_confirmed
+  cycle: daily
+covid_new_deaths:
+  source: sensor.poland_coronavirus_deaths
+  cycle: daily
+#UPS
+ups_hourly_energy:
+  source: sensor.ups_energy_spent_1
+  cycle: hourly
+ups_daily_energy:
+  source: sensor.ups_energy_spent_1
+  cycle: daily
+ups_monthly_energy:
+  source: sensor.ups_energy_spent_1
+  cycle: monthly
+#TV    
+tv_daily_energy:
+  source: sensor.tv_zuzycie_energii_kwh
+  cycle: daily
+tv_monthly_energy:
+  source: sensor.tv_zuzycie_energii_kwh
+  cycle: monthly
+#Dekoder
+dekoder_daily_energy:
+  source: sensor.dekoder_zuzycie_energii_kwh
+  cycle: daily
+dekoder_monthly_energy:
+  source: sensor.dekoder_zuzycie_energii_kwh
+  cycle: monthly
+#Salon LED Srodek
+salon_led_srodek_daily_energy:
+  source: sensor.salon_led_srodek_zuzycie_energii_kwh
+  cycle: daily
+salon_led_srodek_monthly_energy:
+  source: sensor.salon_led_srodek_zuzycie_energii_kwh
+  cycle: monthly
+#Salon LED Okno
+salon_led_okno_daily_energy:
+  source: sensor.salon_led_okno_zuzycie_energii_kwh
+  cycle: daily
+salon_led_okno_monthly_energy:
+  source: sensor.salon_led_okno_zuzycie_energii_kwh
+  cycle: monthly
+#Salon Żyrandol
+salon_zyrandol_daily_energy:
+  source: sensor.salon_zyrandol_zuzycie_energii_kwh
+  cycle: daily
+salon_zyrandol_monthly_energy:
+  source: sensor.salon_zyrandol_zuzycie_energii_kwh
+  cycle: monthly
+
+#Salon 4x LED
+salon_4x_led_daily_energy:
+  source: sensor.salon_4x_led_zuzycie_energii_kwh
+  cycle: daily
+salon_4x_led_monthly_energy:
+  source: sensor.salon_4x_led_zuzycie_energii_kwh
+  cycle: monthly
+
+#Okap
+okap_daily_energy:
+  source: sensor.okap_zuzycie_energii_kwh
+  cycle: daily
+okap_monthly_energy:
+  source: sensor.okap_zuzycie_energii_kwh
+  cycle: monthly
+
+#Kuchnia LED
+kuchnia_led_daily_energy:
+  source: sensor.kuchnia_zuzycie_energii_kwh
+  cycle: daily
+kuchnia_led_monthly_energy:
+  source: sensor.kuchnia_zuzycie_energii_kwh
+  cycle: monthly
+
+#Jadalnia
+jadalnia_daily_energy:
+  source: sensor.jadalnia_zuzycie_energii_kwh
+  cycle: daily
+jadalnia_monthly_energy:
+  source: sensor.jadalnia_zuzycie_energii_kwh
+  cycle: monthly
+
+#Łazienka LED
+lazienka_led_daily_energy:
+  source: sensor.lazienka_swiatlo_zuzycie_energii_kwh
+  cycle: daily
+lazienka_led_monthly_energy:
+  source: sensor.lazienka_swiatlo_zuzycie_energii_kwh
+  cycle: monthly
+
+#Łazienka Wentylacja
+lazienka_wentylacja_daily_energy:
+  source: sensor.lazienka_wentylator_zuzycie_energii_kwh
+  cycle: daily
+lazienka_wentylacja_monthly_energy:
+  source: sensor.lazienka_wentylator_zuzycie_energii_kwh
+  cycle: monthly

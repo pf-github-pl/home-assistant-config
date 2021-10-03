@@ -1,0 +1,357 @@
+#- platform: waze_travel_time
+#  name: Piotr do domu
+#  origin: person.piotr
+#  destination: zone.home
+#  region: 'EU'
+#- platform: waze_travel_time
+#  name: Maja do domu
+#  origin: person.maja
+#  destination: zone.home
+#  region: 'EU'
+- platform: statistics
+  name: covid_confirmed_stats
+  entity_id: sensor.poland_coronavirus_confirmed
+- platform: statistics
+  name: covid_deaths_stats
+  entity_id: sensor.poland_coronavirus_deaths
+- platform: mqtt
+  state_topic: 'ble_monitor/raspi/iphone8_b'
+  value_template: '{{ value_json.confidence }}'
+  unit_of_measurement: '%'
+  name: 'Piotr BLE iPhone 8'
+#dostep do widokow systemowych wymaga dodania uprawnien dla usera SQL server: GRANT VIEW ANY DEFINITION TO [hassio] GO
+- platform: sql
+  db_url: !secret mysql_db_url
+  queries:
+    - name: DB size
+      #SELECT TOP 1 CAST(SUM(size)*8/1024 AS DECIMAL(8,2)) as total_size_mb FROM sys.master_files WHERE database_id = 8 /* LIMIT */
+      query: >
+          SELECT table_schema AS "database",
+          ROUND(SUM(data_length + index_length) / 1024 / 1024, 1) "value"
+          FROM information_schema.tables WHERE table_schema="hass"
+          GROUP BY table_schema;
+      column: 'value'
+      unit_of_measurement: MB
+#- platform: plex_assistant
+- platform: feedparser
+  name: Wydarzenia Interia.pl
+  feed_url: 'http://wydarzenia.interia.pl/feed'
+  #feed_url: 'https://www.sciencedaily.com/rss/matter_energy/engineering.xml'
+  date_format: '%a, %b %d %I:%M %p'
+  inclusions:
+    - title
+    - link
+    - description
+    - image
+    - language
+    - pubDate
+  exclusions:
+    - language
+- platform: feedparser
+  name: Wiadomości WP.pl 
+  feed_url: 'https://wiadomosci.wp.pl/rss.xml'
+  date_format: '%a, %b %d %I:%M %p'
+  inclusions:
+    - title
+    - link
+    - description
+    - image
+    - language
+    - pubDate
+- platform: feedparser
+  name: TVN24 Biznes
+  feed_url: 'https://tvn24.pl/biznes.xml'
+  date_format: '%a, %b %d %I:%M %p'
+- platform: feedparser
+  name: Ciekawostki Interia
+  feed_url: 'https://wydarzenia.interia.pl/ciekawostki/feed'
+  date_format: '%a, %b %d %I:%M %p'
+- platform: history_stats
+  name: Czas pracy radia 7 dni
+  entity_id: media_player.salon
+  state: 'playing'
+  type: time
+  end: '{{ now().replace(minute=0).replace(second=0) }}'
+  duration:
+    days: 7
+- platform: history_stats
+  name: Czas pracy TV 7 dni
+  entity_id: switch.tv_relay
+  state: 'on'
+  type: time
+  end: '{{ now().replace(minute=0).replace(second=0) }}'
+  duration:
+    days: 7
+- platform: systemmonitor
+  resources:
+    - type: disk_use_percent
+      arg: /home
+    - type: memory_free
+    - type: processor_use
+    - type: last_boot
+    - type: load_1m
+    - type: load_5m
+    - type: load_15m
+    - type: disk_use
+      arg: /home
+    - type: disk_free
+      arg: /home
+    - type: memory_use
+    - type: memory_use_percent
+    - type: ipv4_address
+      arg: eth0
+      
+- platform: command_line
+  name: CPU Temperature
+  command: "cat /sys/class/thermal/thermal_zone0/temp"
+  # If errors occur, make sure configuration file is encoded as UTF-8
+  unit_of_measurement: "°C"
+  value_template: '{{ value | multiply(0.001) | round(1) }}'
+
+- platform: integration
+  source: sensor.ups_current_power
+  name: ups_energy_spent_1
+  unit_time: h
+  unit_prefix: k
+  round: 2
+- platform: integration
+  source: sensor.tv_power
+  name: TV Zużycie Energii kWh
+  unit_time: h
+  unit_prefix: k
+  round: 2
+- platform: integration
+  source: sensor.dekoder_power
+  name: Dekoder Zużycie Energii kWh
+  unit_time: h
+  unit_prefix: k
+  round: 2
+- platform: integration
+  source: sensor.hood_power
+  name: Okap Zużycie Energii kWh
+  unit_time: h
+  unit_prefix: k
+  round: 2
+- platform: integration
+  source: sensor.shelly_salon_ambient_channel_1_power
+  name: Salon LED Środek Zużycie Energii kWh
+  unit_time: h
+  unit_prefix: k
+  round: 2
+- platform: integration
+  source: sensor.shelly_salon_ambient_channel_2_power
+  name: Salon LED Okno Zużycie Energii kWh
+  unit_time: h
+  unit_prefix: k
+  round: 2
+- platform: integration
+  source: sensor.salon_swiatlo_channel_1_power
+  name: Salon Żyrandol Zużycie Energii kWh
+  unit_time: h
+  unit_prefix: k
+  round: 2
+- platform: integration
+  source: sensor.salon_swiatlo_channel_2_power
+  name: Salon 4x LED Zużycie Energii kWh
+  unit_time: h
+  unit_prefix: k
+  round: 2
+- platform: integration
+  source: sensor.kuchnia_shelly_channel_1_power
+  name: Kuchnia Zużycie Energii kWh
+  unit_time: h
+  unit_prefix: k
+  round: 2
+- platform: integration
+  source: sensor.kuchnia_shelly_channel_2_power
+  name: Jadalnia Zużycie Energii kWh
+  unit_time: h
+  unit_prefix: k
+  round: 2
+- platform: integration
+  source: sensor.shelly_lazienka_channel_1_power
+  name: Łazienka Światło Zużycie Energii kWh
+  unit_time: h
+  unit_prefix: k
+  round: 2
+- platform: integration
+  source: sensor.shelly_lazienka_channel_2_power
+  name: Łazienka Wentylator Zużycie Energii kWh
+  unit_time: h
+  unit_prefix: k
+  round: 2
+
+- platform: moon
+
+- platform: template
+  sensors:
+### sleeping in hours from garmin 
+    sleeping_time_to_hours:
+      friendly_name: "Czas snu - Piotr"
+      value_template: >
+        {% set ct = states('sensor.sleeping_time_2') | int %}
+        {% if ct == 0 %}
+          Unavailable
+        {% elif ct > 60 %}
+          {{ ct // 60 }}:{{ '{:0>2d}'.format(ct%60) }} h
+        {% else %}
+          {{ ct }} minutes
+        {% endif %}
+### ups runtime in minutes
+    ups_battery_runtime_minutes:
+      friendly_name: "UPS battery runtime (minutes)"
+      value_template: >
+        {% set ct = states('sensor.qnapups_battery_runtime') | int %}
+        {% if ct == 0 %}
+          Unavailable
+        {% elif ct > 60 %}
+          {{ ct // 60 }}:{{ '{:0>2d}'.format(ct%60) }} min
+        {% else %}
+          {{ ct }} sec
+        {% endif %}
+### ups power from load
+    ups_current_power:
+      value_template: '{{ ((states.sensor.qnapups_load.state | float / 100 * 540)) | round(2) }}'
+      friendly_name: 'UPS current power'
+      unit_of_measurement: 'W'
+### xiaomi air humidifier
+#    mi_humidifier_t:
+#      friendly_name: "Humidifier Temperature"
+#      unit_of_measurement: '°C'
+#      value_template: "{{ state_attr('fan.air_humidifier_2', 'temperature') }}"
+#    mi_humidifier_h:
+#      friendly_name: "Humidifier Humidity"
+#      unit_of_measurement: '%'
+#      value_template: "{{ state_attr('fan.air_humidifier_2', 'humidity') }}"
+#    mi_humidifier_w:
+#      friendly_name: "Humidifier Water"
+#      unit_of_measurement: '%'
+#      value_template: >-
+#        {% if state_attr('fan.air_humidifier_2', 'depth') < 127 %}
+#          {{ (state_attr('fan.air_humidifier_2', 'depth') * 0.89 - 11.6) | round | min(100) | max(0) }}
+#        {% else %}
+#          {{ states('sensor.mi_humidifier_w') }}
+#        {% endif %}
+### xiaomi air purifier
+#    mi_aqi:
+#      friendly_name: "Air Purifier"
+#      unit_of_measurement: 'AQI'
+#      value_template: "{{ state_attr('fan.air_purifier_2', 'aqi') }}"
+#    mi_humidity:
+#      friendly_name: "Air Purifier Humidity"
+#      unit_of_measurement: '%'
+#      value_template: "{{ state_attr('fan.air_purifier_2', 'humidity') }}"
+#    mi_temperature:
+#      friendly_name: "Air Purifier Temperature"
+#      unit_of_measurement: '°C'
+#      value_template: "{{ state_attr('fan.air_purifier_2', 'temperature') }}"
+### airly 
+    airly_pm25:
+      friendly_name: "Pył PM2.5 (% normy)"
+      unit_of_measurement: '%'
+      value_template: "{{ state_attr('sensor.airly_pm10_2', 'percent') }}"
+    airly_pm10:
+      friendly_name: "Pył PM10 (% normy)"
+      unit_of_measurement: '%'
+      value_template: "{{ state_attr('sensor.airly_pm2_5', 'percent') }}"
+    airly_description:
+      friendly_name: "Komunikat"
+      icon_template: mdi:alert
+      value_template: "{{ state_attr('sensor.airly_caqi', 'description') }}"
+### iss
+    iss_next_rise:
+      value_template: "{% set nextrise = as_timestamp(states.binary_sensor.iss.attributes.next_rise) | timestamp_custom('%a, %b %d at %I:%M %p') %} {{ nextrise }}"
+      entity_id: binary_sensor.iss
+    iss_crew_count:
+      value_template: "{{ states.binary_sensor.iss.attributes.number_of_people_in_space }}"
+      entity_id: binary_sensor.iss
+    iss_latitude:
+      value_template: "{{ states.binary_sensor.iss.attributes.lat }}"
+      entity_id: binary_sensor.iss
+    iss_longitude:
+      value_template: "{{ states.binary_sensor.iss.attributes.long }}"
+      entity_id: binary_sensor.iss
+### total energy consumption - daily and monthly
+    total_daily_energy:
+      entity_id: sensor.total_daily_energy
+      friendly_name: Total Daily Energy Consumption
+      unit_of_measurement: kWh
+      value_template: >
+        {{ (states('sensor.jadalnia_daily_energy')|float
+            + states('sensor.kuchnia_led_daily_energy')|float 
+            + states('sensor.lazienka_led_daily_energy')|float
+            + states('sensor.lazienka_wentylacja_daily_energy')|float
+            + states('sensor.okap_daily_energy') | float
+            + states('sensor.salon_4x_led_daily_energy')|float
+            + states('sensor.salon_led_okno_daily_energy')|float
+            + states('sensor.salon_led_srodek_daily_energy')|float
+            + states('sensor.salon_zyrandol_daily_energy')|float
+            + states('sensor.tv_daily_energy')|float
+            + states('sensor.dekoder_daily_energy')|float
+            + states('sensor.ups_daily_energy')|float )|round(2)}}
+    total_monthly_energy:
+      entity_id: sensor.total_monthly_energy
+      friendly_name: Total Monthly Energy Consumption
+      unit_of_measurement: kWh
+      value_template: >
+        {{ (states('sensor.jadalnia_monthly_energy')|float
+            + states('sensor.kuchnia_led_monthly_energy')|float
+            + states('sensor.lazienka_led_monthly_energy')|float
+            + states('sensor.lazienka_wentylacja_monthly_energy')|float
+            + states('sensor.okap_monthly_energy') | float
+            + states('sensor.salon_4x_led_monthly_energy')|float
+            + states('sensor.salon_led_okno_monthly_energy')|float
+            + states('sensor.salon_led_srodek_monthly_energy')|float
+            + states('sensor.salon_zyrandol_monthly_energy')|float
+            + states('sensor.tv_monthly_energy')|float
+            + states('sensor.dekoder_monthly_energy')|float
+            + states('sensor.ups_monthly_energy')|float)|round(2) }}
+
+### ups
+##- platform: nut
+##  name: qnapups
+##  host: !secret qnap_ip
+##  username: !secret qnapups_user
+##  password: !secret qnapups_password
+##  resources:
+##    - ups.status
+##    - ups.load
+##    - battery.runtime
+##    - battery.charge
+##    - ups.realpower.nominal
+##    - ups.status.display
+
+### alpha vantage forex
+- platform: alpha_vantage
+  api_key: !secret alpha_vantage_api_key
+  foreign_exchange:
+    - name: USD_PLN
+      from: USD
+      to: PLN
+    - name: EUR_PLN
+      from: EUR
+      to: PLN
+### qnap
+- platform: qnap
+  host: !secret qnap_ip
+  username: !secret qnap_user
+  password: !secret qnap_pass
+  port: 443
+  ssl: true
+  verify_ssl: false
+  monitored_conditions:
+    - status
+    - system_temp
+    - cpu_temp
+    - cpu_usage
+    - memory_free
+    - memory_used
+    - memory_percent_used
+    - network_link_status
+    - network_tx
+    - network_rx
+    - drive_smart_status
+    - drive_temp
+    - volume_size_free
+    - volume_size_used
+    - volume_percentage_used

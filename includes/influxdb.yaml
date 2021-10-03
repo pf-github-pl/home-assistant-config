@@ -1,0 +1,5 @@
+host: 192.168.0.15
+port: 8086
+database: !secret influx_db
+username: !secret influx_user
+password: !secret influx_pass

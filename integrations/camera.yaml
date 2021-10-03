@@ -1,0 +1,8 @@
+camera:
+  - platform: mjpeg
+    name: Kamera 1
+    mjpeg_url: !secret camera1_url
+  - platform: generic
+    name: ISS
+    still_image_url: !secret iss_mapquest_url
+    limit_refetch_to_url_change: true
