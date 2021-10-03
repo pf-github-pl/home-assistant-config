@@ -10,7 +10,6 @@
 !integrations
 !automations
 !esphome
-!zigbee2mqtt
 
 # Add themes directory
 !*.jpg
@@ -20,7 +19,7 @@
 .storage
 .cloud
 .google.token
-#.zigbee2mqtt
+.zigbee2mqtt
 
 # Ensure these YAML files are ignored, otherwise your secret data/credentials will leak.
 ip_bans.yaml
