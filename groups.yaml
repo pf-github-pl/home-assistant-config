@@ -3,7 +3,6 @@ garmin:
   entities:
     - switch.tv_relay
     - input_boolean.radio_nowy_swiat
-    - light.gabinet_swiatlo
     - light.kuchnia_szafki_light
     - light.salon_ambient_okno
     - light.salon_ambient_srodek
