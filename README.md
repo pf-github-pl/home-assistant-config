@@ -18,6 +18,7 @@
 * [Harman Kardon Citation One MKII](https://pl.harmankardon.com/citation-series/CITATION+ONE+MK2.html)
 * [Harman Kardon Citation Oasis](https://pl.harmankardon.com/CITATION+OASIS.html)
 * [IKEA TRADFRI driver for wireless control (30 watt) (light)](https://www.ikea.com/us/en/p/tradfri-driver-for-wireless-control-gray-60342661/)
+* [IKEA TRADFRI shorcut buttons](https://www.ikea.com/us/en/p/tradfri-shortcut-button-white-smart-20356382/)
 * [Somfy Tilt & Lift 25 WireFree RTS CENTRAL](https://www.somfy.co.uk/products/1002295/tilt-lift-25-rts-central)
 * [Sonoff Basic](https://sonoff.tech/product/diy-smart-switch/basicr2/) with [tasmota](https://tasmota.github.io) firmware
 * [Sonoff POW](https://sonoff.tech/product/diy-smart-switch/pow/) with [ESPHome](https://esphome.io/) firmware
@@ -28,6 +29,7 @@
 * [Xiaomi Mi Smart Temperature & Humidity Sensor](https://www.mi-store.com.au/mi-temperature-and-humidity-monitor)
 * [Xiaomi Mi Smart Window & Door Sensor](https://www.mi-store.com.au/xiaomi-mi-window-and-door-sensor-1)
 * [Aqara Water Leak Sensor](https://www.aqara.com/us/water_leak_sensor.html)
+* Simple passive NFC tags
 
 ### Supervisor Add-Ons
 * [ESPHome](https://esphome.io/)
