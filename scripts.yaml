@@ -1,73 +1,64 @@
 script_contact_lenses:
-  alias: 'Wymiana soczewek'
+  alias: Wymiana soczewek
   sequence:
-    - service: input_datetime.set_datetime
-      data_template:
-        entity_id: input_datetime.contact_lenses_last_change
-        time: '{{ (as_timestamp(now()) | timestamp_custom("%H:%M:%S", true)) }}'
-        date: '{{ (as_timestamp(now()) | timestamp_custom("%Y-%m-%d", true)) }}'
-
+  - service: input_datetime.set_datetime
+    data_template:
+      entity_id: input_datetime.contact_lenses_last_change
+      time: '{{ (as_timestamp(now()) | timestamp_custom("%H:%M:%S", true)) }}'
+      date: '{{ (as_timestamp(now()) | timestamp_custom("%Y-%m-%d", true)) }}'
 script_brita_filter:
-  alias: 'Wymiana filtra brita'
+  alias: Wymiana filtra brita
   sequence:
-    - service: input_datetime.set_datetime
-      data_template:
-        entity_id: input_datetime.brita_filter_last_change
-        time: '{{ (as_timestamp(now()) | timestamp_custom("%H:%M:%S", true)) }}'
-        date: '{{ (as_timestamp(now()) | timestamp_custom("%Y-%m-%d", true)) }}'
-
+  - service: input_datetime.set_datetime
+    data_template:
+      entity_id: input_datetime.brita_filter_last_change
+      time: '{{ (as_timestamp(now()) | timestamp_custom("%H:%M:%S", true)) }}'
+      date: '{{ (as_timestamp(now()) | timestamp_custom("%Y-%m-%d", true)) }}'
 script_humidifier_wash:
-  alias: 'Nawilżacz - mycie w zmywarce'
+  alias: Nawilżacz - mycie w zmywarce
   sequence:
-    - service: input_datetime.set_datetime
-      data_template:
-        entity_id: input_datetime.humidifier_last_wash
-        time: '{{ (as_timestamp(now()) | timestamp_custom("%H:%M:%S", true)) }}'
-        date: '{{ (as_timestamp(now()) | timestamp_custom("%Y-%m-%d", true)) }}'
-        
-        
-
+  - service: input_datetime.set_datetime
+    data_template:
+      entity_id: input_datetime.humidifier_last_wash
+      time: '{{ (as_timestamp(now()) | timestamp_custom("%H:%M:%S", true)) }}'
+      date: '{{ (as_timestamp(now()) | timestamp_custom("%Y-%m-%d", true)) }}'
 script_toothbrush:
-  alias: 'Wymiana szczoteczki'
+  alias: Wymiana szczoteczki
   sequence:
-    - service: input_datetime.set_datetime
-      data_template:
-        entity_id: input_datetime.toothbrush_last_change
-        time: '{{ (as_timestamp(now()) | timestamp_custom("%H:%M:%S", true)) }}'
-        date: '{{ (as_timestamp(now()) | timestamp_custom("%Y-%m-%d", true)) }}'
-        
+  - service: input_datetime.set_datetime
+    data_template:
+      entity_id: input_datetime.toothbrush_last_change
+      time: '{{ (as_timestamp(now()) | timestamp_custom("%H:%M:%S", true)) }}'
+      date: '{{ (as_timestamp(now()) | timestamp_custom("%Y-%m-%d", true)) }}'
 script_dishwasher:
-  alias: 'Czyszczenie zmywarki'
+  alias: Czyszczenie zmywarki
   sequence:
-    - service: input_datetime.set_datetime
-      data_template:
-        entity_id: input_datetime.dishwasher_clean
-        time: '{{ (as_timestamp(now()) | timestamp_custom("%H:%M:%S", true)) }}'
-        date: '{{ (as_timestamp(now()) | timestamp_custom("%Y-%m-%d", true)) }}'
-
+  - service: input_datetime.set_datetime
+    data_template:
+      entity_id: input_datetime.dishwasher_clean
+      time: '{{ (as_timestamp(now()) | timestamp_custom("%H:%M:%S", true)) }}'
+      date: '{{ (as_timestamp(now()) | timestamp_custom("%Y-%m-%d", true)) }}'
 script_washing_machine:
-  alias: 'Pralka - czyszczenie bębna'
+  alias: Pralka - czyszczenie bębna
   sequence:
-    - service: input_datetime.set_datetime
-      data_template:
-        entity_id: input_datetime.washing_machine_clean
-        time: '{{ (as_timestamp(now()) | timestamp_custom("%H:%M:%S", true)) }}'
-        date: '{{ (as_timestamp(now()) | timestamp_custom("%Y-%m-%d", true)) }}'
-
+  - service: input_datetime.set_datetime
+    data_template:
+      entity_id: input_datetime.washing_machine_clean
+      time: '{{ (as_timestamp(now()) | timestamp_custom("%H:%M:%S", true)) }}'
+      date: '{{ (as_timestamp(now()) | timestamp_custom("%Y-%m-%d", true)) }}'
 script_floor:
-  alias: 'Parkiet - froterowanie'
+  alias: Parkiet - froterowanie
   sequence:
-    - service: input_datetime.set_datetime
-      data_template:
-        entity_id: input_datetime.floor_last_wash
-        time: '{{ (as_timestamp(now()) | timestamp_custom("%H:%M:%S", true)) }}'
-        date: '{{ (as_timestamp(now()) | timestamp_custom("%Y-%m-%d", true)) }}'
-
+  - service: input_datetime.set_datetime
+    data_template:
+      entity_id: input_datetime.floor_last_wash
+      time: '{{ (as_timestamp(now()) | timestamp_custom("%H:%M:%S", true)) }}'
+      date: '{{ (as_timestamp(now()) | timestamp_custom("%Y-%m-%d", true)) }}'
 script_coffee:
-  alias: 'Czyszczenie ekspresu do kawy'
+  alias: Czyszczenie ekspresu do kawy
   sequence:
-    - service: input_datetime.set_datetime
-      data_template:
-        entity_id: input_datetime.ekspres_czyszczenie
-        time: '{{ (as_timestamp(now()) | timestamp_custom("%H:%M:%S", true)) }}'
-        date: '{{ (as_timestamp(now()) | timestamp_custom("%Y-%m-%d", true)) }}'
+  - service: input_datetime.set_datetime
+    data_template:
+      entity_id: input_datetime.ekspres_czyszczenie
+      time: '{{ (as_timestamp(now()) | timestamp_custom("%H:%M:%S", true)) }}'
+      date: '{{ (as_timestamp(now()) | timestamp_custom("%Y-%m-%d", true)) }}'
