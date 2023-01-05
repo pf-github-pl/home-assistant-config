@@ -1,6 +1,3 @@
-- platform: airbnb_sensor
-  
-  
 - platform: burze_dzis_net
   api_key: !secret burze_key
   warnings:
@@ -14,35 +11,4 @@
   longitude: !secret burze_long
   storms_nearby:
     radius: 30
-
-
-- platform: iss
-
-
-- platform: mqtt
-  name: "Balkon - czujka ruchu"
-  state_topic: "cameras/motion/drive"
-  payload_on: "ON"
-  payload_off: "OFF"
-  device_class: "motion"
-  
-  
-#PING
-- platform: ping
-  host: 192.168.0.150
-  count: 5
-  scan_interval: 600
-  name: Airzone WiFi - Klima
-
-- platform: ping
-  host: 192.168.0.30
-  count: 5
-  scan_interval: 600
-  name: iPhone Piotr ping
-  
-- platform: ping
-  host: 192.168.0.32
-  count: 5
-  scan_interval: 600
-  name: iPhone Maja ping
-  
+    
