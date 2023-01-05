@@ -10,21 +10,21 @@ condition: []
 action:
 - service: media_player.turn_on
   data:
-    entity_id: media_player.salon
+    entity_id: media_player.salon2
 - delay:
     milliseconds: 2000
 - service: media_player.play_media
   data:
-    entity_id: media_player.salon
+    entity_id: media_player.salon2
     media_content_id: https://n09.rcs.revma.com/ypqt40u0x1zuv
     media_content_type: music
 - delay: 
     milliseconds: 100
 - service: media_player.media_pause
   data:
-    entity_id: media_player.salon
+    entity_id: media_player.salon2
 - delay:
     milliseconds: 100
 - service: media_player.media_play
   data:
-    entity_id: media_player.salon
+    entity_id: media_player.salon2
