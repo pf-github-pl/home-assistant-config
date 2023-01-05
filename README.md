@@ -15,8 +15,8 @@
 * [QNAP TS-251A](https://www.qnap.com/en/product/ts-251a)
 * [Dell Wyse 5070 Extended](https://www.dell.com/en-us/shop/wyse-endpoints-and-software/wyse-5070-thin-client/spd/wyse-5070-thin-client/xcto5070slimthinclient2) - Proxmox Server
 * [UPS Cyberpower CP900EPFCLCD](https://www.cyberpower.com/eu/EN/product/sku/CP900EPFCLCD)
-* [Harman Kardon Citation One MKII](https://www.harmankardon.com/citation-series/CITATION+ONE+MK2.html)
-* [Harman Kardon Citation One MKII](https://www.harmankardon.com/citation-series/CITATION+ONE+MK2.html)
+* [Harman Kardon Citation One MKII](https://pl.harmankardon.com/citation-series/CITATION+ONE+MK2.html)
+* [Harman Kardon Citation Oasis](https://pl.harmankardon.com/CITATION+OASIS.html)
 * [IKEA TRADFRI driver for wireless control (30 watt) (light)](https://www.ikea.com/us/en/p/tradfri-driver-for-wireless-control-gray-60342661/)
 * [Somfy Tilt & Lift 25 WireFree RTS CENTRAL](https://www.somfy.co.uk/products/1002295/tilt-lift-25-rts-central)
 * [Sonoff Basic](https://sonoff.tech/product/diy-smart-switch/basicr2/) with [tasmota](https://tasmota.github.io) firmware
