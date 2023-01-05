@@ -1,0 +1,17 @@
+- id: '1637616081822'
+  alias: Włącz kinkiety
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_boolean.kinkiety
+  condition: []
+  action:
+  - type: turn_on
+    device_id: 43396c26aa124b78bc651352e6c85cd9
+    entity_id: switch.shelly_kinkiety_channel_1
+    domain: switch
+  - type: turn_on
+    device_id: 43396c26aa124b78bc651352e6c85cd9
+    entity_id: switch.shelly_kinkiety_channel_2
+    domain: switch
+  mode: single
