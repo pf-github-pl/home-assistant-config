@@ -33,6 +33,7 @@
 
 ### Supervisor Add-Ons
 * [ESPHome](https://esphome.io/)
+* [TasmoAdmin](https://github.com/hassio-addons/addon-tasmoadmin)
 * [File editor](https://github.com/home-assistant/addons/tree/master/configurator)
 * [Mosquitto broker](https://github.com/home-assistant/addons/tree/master/mosquitto)
 * [Node-RED](https://github.com/hassio-addons/addon-node-red)
