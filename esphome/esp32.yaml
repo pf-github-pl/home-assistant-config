@@ -1,0 +1,52 @@
+esphome:
+  name: esp32-idasen
+  platform: ESP32
+  board: esp32dev
+  libraries:
+    - "ESP32 BLE Arduino"
+# Enable logging
+logger:
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (for captive portal) in case wifi connection fails
+  ap:
+    ssid: "EspBT"
+    password: !secret ap_password
+
+api:
+#  password: !secret api_ota_password
+
+ota:
+#  password: !secret api_ota_password
+  
+external_components:
+  - source: github://j5lien/esphome-idasen-desk-controller@v1.2.2
+
+idasen_desk_controller:
+  mac_address: "eb:a8:f1:68:36:c5"
+
+sensor:
+  - platform: idasen_desk_controller
+    desk_height:
+      name: "Desk Height"
+  - platform: dht
+    pin: GPIO4
+    temperature:
+      name: "ESP32 Temperature"
+    humidity:
+      name: "ESP32 Humidity"
+    update_interval: 60s
+binary_sensor:
+  - platform: idasen_desk_controller
+    name: "Desk Connection"
+    type: CONNECTION
+  - platform: idasen_desk_controller
+    name: "Desk Moving"
+    type: MOVING
+
+cover:
+  - platform: idasen_desk_controller
+    name: "Desk"
