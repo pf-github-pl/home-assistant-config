@@ -225,7 +225,7 @@
       value_template: "{{ state_attr('sensor.magic_cube_action', 'side') }}"
 ### total energy consumption - daily and monthly
     total_daily_energy:
-      entity_id: sensor.total_daily_energy
+      unique_id: sensor.total_daily_energy
       friendly_name: Total Daily Energy Consumption
       unit_of_measurement: kWh
       value_template: >
@@ -242,7 +242,7 @@
             + states('sensor.dekoder_daily_energy')|float
             + states('sensor.ups_daily_energy')|float )|round(2)}}
     total_monthly_energy:
-      entity_id: sensor.total_monthly_energy
+      unique_id: sensor.total_monthly_energy
       friendly_name: Total Monthly Energy Consumption
       unit_of_measurement: kWh
       value_template: >
@@ -259,31 +259,18 @@
             + states('sensor.dekoder_monthly_energy')|float
             + states('sensor.ups_monthly_energy')|float)|round(2) }}
 
-### alpha vantage forex
-#- platform: alpha_vantage
-#  api_key: !secret alpha_vantage_api_key
-#  foreign_exchange:
-#    - name: USD_PLN
-#      from: USD
-#      to: PLN
-#    - name: EUR_PLN
-#      from: EUR
-#      to: PLN
-
 ### instead of alpha vantage bc fx are premium service now 20220907
 - platform: command_line
-  name: 'usd_pln'
-  command: curl - s - XGET 'https://api.exchangerate.host/latest?base=USD&symbols=PLN'
-  scan_interval: 900
-  unit_of_measurement: 'PLN'
-  value_template: "{{ value_json.rates.PLN | round(2) }}"
-
+  name: eur_pln
+  scan_interval: 10800
+  command: !secret anyapi
+  value_template: "{{ (1/value_json.rates.EUR) | round(4) }}"
+  
 - platform: command_line
-  name: 'eur_pln'
-  command: curl - s - XGET 'https://api.exchangerate.host/latest?base=EUR&symbols=PLN'
-  scan_interval: 900
-  unit_of_measurement: 'PLN'
-  value_template: "{{ value_json.rates.PLN | round(2) }}"
+  name: usd_pln
+  scan_interval: 10800
+  command: !secret anyapi
+  value_template: "{{ (1/value_json.rates.usd) | round(4) }}"
 
 ### qnap
 - platform: qnap
